@@ -1,14 +1,14 @@
 FROM registry.access.redhat.com/hi/nodejs:26-builder AS builder
 WORKDIR /app
 COPY package*.json tsconfig.json ./
-RUN npm ci
+RUN npm install
 COPY src ./src
 RUN npm run build
 
 FROM registry.access.redhat.com/hi/nodejs:26-builder AS deps
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 FROM registry.access.redhat.com/hi/nodejs:26
 WORKDIR /app
