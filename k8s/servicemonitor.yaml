@@ -1,0 +1,16 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mcp-quote-of-the-day
+  labels:
+    app: mcp-quote-of-the-day
+spec:
+  selector:
+    matchLabels:
+      app: mcp-quote-of-the-day
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 30s
+    scrapeTimeout: 10s

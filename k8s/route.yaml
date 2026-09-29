@@ -1,0 +1,18 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mcp-quote-of-the-day
+  labels:
+    app: mcp-quote-of-the-day
+spec:
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Allow
+    termination: edge
+  to:
+    kind: Service
+    name: mcp-quote-of-the-day
+    weight: 100
+  wildcardPolicy: None

@@ -1,0 +1,23 @@
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: mcp-quote-of-the-day
+  labels:
+    app: mcp-quote-of-the-day
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: mcp-quote-of-the-day:latest
+  source:
+    type: Git
+    git:
+      uri: https://github.com/your-org/mcp-quote-of-the-day.git
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Containerfile
+  triggers:
+  - type: ConfigChange

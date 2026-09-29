@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-quote-of-the-day
+  labels:
+    app: mcp-quote-of-the-day
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mcp-quote-of-the-day
+  type: ClusterIP
